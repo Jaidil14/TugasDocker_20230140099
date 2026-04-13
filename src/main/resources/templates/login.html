@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" th:href="@{/static.css}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-title {
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-bottom: 1px solid #dde1e7;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            padding: 30px 20px;
+        }
+
+        .login-box {
+            background-color: #ffffff;
+            border: 1px solid #dde1e7;
+            border-radius: 4px;
+            padding: 24px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #c5c9d0;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #333;
+            background-color: #fafbfc;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1877f2;
+            background-color: #fff;
+        }
+
+        .btn-login {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            padding: 9px 20px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-login:hover {
+            background-color: #166fe5;
+        }
+
+        .error-message {
+            color: #d93025;
+            font-size: 12px;
+            margin-bottom: 14px;
+            padding: 8px 12px;
+            background-color: #fce8e6;
+            border-radius: 3px;
+            border-left: 3px solid #d93025;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-title">Login Page</div>
+
+<div class="container">
+    <div class="login-box">
+
+        <!-- Error message jika login gagal -->
+        <div class="error-message" th:if="${error}" th:text="${error}"></div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="" required />
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

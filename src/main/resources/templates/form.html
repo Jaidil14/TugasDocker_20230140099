@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Mahasiswa</title>
+    <link rel="stylesheet" th:href="@{/static.css}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        .form-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #c5c9d0;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #333;
+            background-color: #fafbfc;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: #1877f2;
+            background-color: #fff;
+        }
+
+        /* Radio buttons */
+        .radio-group {
+            margin-bottom: 16px;
+        }
+
+        .radio-group label.group-label {
+            display: block;
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            gap: 8px;
+        }
+
+        .radio-option input[type="radio"] {
+            accent-color: #1877f2;
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            font-size: 13px;
+            color: #444;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            padding: 9px 20px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .btn-submit:hover {
+            background-color: #166fe5;
+        }
+
+        .link-back {
+            font-size: 13px;
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        .link-back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <p class="form-title">Form Input Mahasiswa</p>
+
+    <form th:action="@{/form}" method="post">
+        <div class="form-group">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required />
+        </div>
+
+        <div class="form-group">
+            <label for="nim">NIM:</label>
+            <input type="text" id="nim" name="nim" required />
+        </div>
+
+        <div class="radio-group">
+            <label class="group-label">Jenis Kelamin:</label>
+            <div class="radio-option">
+                <input type="radio" id="lakiLaki" name="jenisKelamin" value="Laki-laki" required />
+                <label for="lakiLaki">Laki-laki</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="perempuan" name="jenisKelamin" value="Perempuan" />
+                <label for="perempuan">Perempuan</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit</button>
+    </form>
+
+    <a href="/home" class="link-back">Kembali ke Home</a>
+</div>
+
+</body>
+</html>

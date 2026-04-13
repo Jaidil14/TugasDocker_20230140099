@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/static.css}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 900px;
+        }
+
+        .site-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+
+        .welcome-text {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .link-input {
+            font-size: 13px;
+            color: #1877f2;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 18px;
+        }
+
+        .link-input:hover {
+            text-decoration: underline;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .data-table thead tr {
+            background-color: #1877f2;
+            color: white;
+        }
+
+        .data-table thead th {
+            padding: 10px 14px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .data-table tbody tr {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e4e6ea;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #f5f7fa;
+        }
+
+        .data-table tbody td {
+            padding: 10px 14px;
+            text-align: center;
+            color: #444;
+        }
+
+        .empty-row td {
+            color: #888;
+            font-style: italic;
+        }
+
+        .logout-link {
+            font-size: 13px;
+            color: #1877f2;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 16px;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <p class="site-title" th:text="'MY Website ' + ${nim}">MY Website</p>
+    <p class="welcome-text">Selamat datang di aplikasi!</p>
+
+    <a href="/form" class="link-input">+ Input Data Mahasiswa</a>
+
+    <p class="section-title">Data Mahasiswa</p>
+
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Jenis Kelamin</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Jika ada data -->
+        <th:block th:if="${mahasiswaList != null and !mahasiswaList.empty}">
+            <tr th:each="mhs, stat : ${mahasiswaList}">
+                <td th:text="${stat.count}">1</td>
+                <td th:text="${mhs.nama}">Nama</td>
+                <td th:text="${mhs.nim}">NIM</td>
+                <td th:text="${mhs.jenisKelamin}">Jenis Kelamin</td>
+            </tr>
+        </th:block>
+
+        <!-- Jika tidak ada data -->
+        <tr class="empty-row" th:if="${mahasiswaList == null or mahasiswaList.empty}">
+            <td colspan="4">Belum ada data</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/logout" class="logout-link">Logout</a>
+</div>
+
+</body>
+</html>
