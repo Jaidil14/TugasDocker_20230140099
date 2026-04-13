@@ -1,16 +1,10 @@
 package com.tugas.deploy.model;
 
-/**
- * Model User untuk menyimpan data mahasiswa secara temporary (in-memory).
- * Data tidak disimpan di database.
- */
 public class User {
 
     private String nama;
     private String nim;
     private String jenisKelamin;
-
-    // ===== Constructor =====
 
     public User() {}
 
@@ -19,8 +13,6 @@ public class User {
         this.nim = nim;
         this.jenisKelamin = jenisKelamin;
     }
-
-    // ===== Getter & Setter =====
 
     public String getNama() {
         return nama;
@@ -45,8 +37,6 @@ public class User {
     public void setJenisKelamin(String jenisKelamin) {
         this.jenisKelamin = jenisKelamin;
     }
-
-    // ===== toString =====
 
     @Override
     public String toString() {
