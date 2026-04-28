@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -105,45 +106,55 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <p class="site-title" th:text="'MY Website ' + ${nim}">MY Website</p>
-    <p class="welcome-text">Selamat datang di aplikasi!</p>
+    <div class="container">
+        <p class="site-title" th:text="'MY Website ' + ${nim}">MY Website</p>
+        <p class="welcome-text">Selamat datang di My website!</p>
 
-    <a href="/form" class="link-input">+ Input Data Mahasiswa</a>
+        <div class="image-section" style="margin-bottom: 20px; text-align: center;">
+            <p style="margin-top: 10px; font-weight: 700; font-size: 14px; color: #555;"> Kanda Bahlil </p>
+            <img th:src="@{/download.png}" alt="Kanda Bahlil"
+                style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-height: 400px; object-fit: cover;">
+            <p style="margin-top: 10px; font-size: 14px; color: #555; font-style: italic;">"Jangan lupa matikan kompor"</p>
+        </div>
 
-    <p class="section-title">Data Mahasiswa</p>
 
-    <table class="data-table">
-        <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>NIM</th>
-            <th>Jenis Kelamin</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Jika ada data -->
-        <th:block th:if="${mahasiswaList != null and !mahasiswaList.empty}">
-            <tr th:each="mhs, stat : ${mahasiswaList}">
-                <td th:text="${stat.count}">1</td>
-                <td th:text="${mhs.nama}">Nama</td>
-                <td th:text="${mhs.nim}">NIM</td>
-                <td th:text="${mhs.jenisKelamin}">Jenis Kelamin</td>
-            </tr>
-        </th:block>
+        <a href="/form" class="link-input">+ Input Data Mahasiswa</a>
 
-        <!-- Jika tidak ada data -->
-        <tr class="empty-row" th:if="${mahasiswaList == null or mahasiswaList.empty}">
-            <td colspan="4">Belum ada data</td>
-        </tr>
-        </tbody>
-    </table>
+        <p class="section-title">Data Mahasiswa</p>
 
-    <a href="/logout" class="logout-link">Logout</a>
-</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Jenis Kelamin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Jika ada data -->
+                <th:block th:if="${mahasiswaList != null and !mahasiswaList.empty}">
+                    <tr th:each="mhs, stat : ${mahasiswaList}">
+                        <td th:text="${stat.count}">1</td>
+                        <td th:text="${mhs.nama}">Nama</td>
+                        <td th:text="${mhs.nim}">NIM</td>
+                        <td th:text="${mhs.jenisKelamin}">Jenis Kelamin</td>
+                    </tr>
+                </th:block>
+
+                <!-- Jika tidak ada data -->
+                <tr class="empty-row" th:if="${mahasiswaList == null or mahasiswaList.empty}">
+                    <td colspan="4">Belum ada data</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="/logout" class="logout-link">Logout</a>
+    </div>
 
 </body>
+
 </html>
