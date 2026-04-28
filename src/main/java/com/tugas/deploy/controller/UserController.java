@@ -1,21 +1,23 @@
 package com.tugas.deploy.controller;
 
 import com.tugas.deploy.model.User;
+import com.tugas.deploy.repository.UserRepository; // Import repository
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class UserController {
 
+    @Autowired
+    private UserRepository userRepository; // Inject repository
+
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "20230140099";
-
-    private final List<User> mahasiswaList = new ArrayList<>();
 
     @GetMapping("/")
     public String index() {
@@ -51,6 +53,9 @@ public class UserController {
             return "redirect:/login";
         }
 
+        // Ambil data langsung dari database MySQL
+        List<User> mahasiswaList = userRepository.findAll();
+
         model.addAttribute("nim", session.getAttribute("nim"));
         model.addAttribute("mahasiswaList", mahasiswaList);
         return "home";
@@ -73,8 +78,9 @@ public class UserController {
             return "redirect:/login";
         }
 
+        // Simpan ke database MySQL
         User user = new User(nama, nim, jenisKelamin);
-        mahasiswaList.add(user);
+        userRepository.save(user);
 
         return "redirect:/home";
     }

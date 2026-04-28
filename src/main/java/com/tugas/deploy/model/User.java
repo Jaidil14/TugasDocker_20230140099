@@ -1,6 +1,14 @@
 package com.tugas.deploy.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String nama;
     private String nim;
@@ -13,6 +21,10 @@ public class User {
         this.nim = nim;
         this.jenisKelamin = jenisKelamin;
     }
+
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
 
     public String getNama() {
         return nama;
